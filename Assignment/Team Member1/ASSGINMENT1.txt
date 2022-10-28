@@ -1,0 +1,24 @@
+#include <SoftwareSerial.h>
+SoftwareSerial BTserial(2, 3);  
+int ledPin = 12;
+char data = 0;  
+
+void setup()
+{
+     pinMode(ledPin, OUTPUT);
+     BTserial.begin(9600);
+     // Serial.begin(9600);
+     // serial.println("Hello World");
+}
+
+void loop()
+{
+    if (BTserial.available())
+    {
+    data = BTserial.read();              
+    if(data == '1')                             
+      digitalWrite(ledPin, HIGH);      
+    else if(data == '0')                      
+      digitalWrite(ledPin, LOW);      
+       }
+}
